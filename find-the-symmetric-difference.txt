@@ -1,0 +1,17 @@
+function sym(args) {
+  function sym2Arr(arr1, arr2) {
+    const arr = [];
+    arr1.concat(arr2).forEach(function(elt) {
+      if(!(arr1.includes(elt) && arr2.includes(elt))) {
+        arr.push(elt);
+      }
+    })
+    return Array.from(new Set(arr));
+  }
+  const arr = [...arguments];
+  return arr.reduce(function(acc, value) {
+    return sym2Arr(acc, value)
+  });
+}
+
+console.log(sym([1, 2, 3, 3], [5, 2, 1, 4]));

@@ -1,0 +1,38 @@
+function updateInventory(arr1, arr2) {
+    const returnArr = arr1
+    arr2.forEach(function(elt) {
+        let flag = false;
+        let i = 0
+        while (i < arr1.length) {
+            if(elt[1] === returnArr[i][1]) {
+                returnArr[i][0] += elt[0];
+                flag = true;
+                break;
+            } 
+            i++
+        }
+        if (flag === false) returnArr.push(elt) 
+    })
+    returnArr.sort(function(a,b) {
+        return a[1].localeCompare(b[1])
+    })
+    console.log(returnArr)
+    return returnArr;
+}
+
+// Example inventory lists
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
+
+updateInventory(curInv, newInv);
