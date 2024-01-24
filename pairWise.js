@@ -1,16 +1,20 @@
 function pairwise(arr, arg) {
-    const pairs = []
-    arr.forEach(function(v, i, arr){
-        let found = arr.findIndex((elt, ind) => v + elt === arg && i !== ind)
-        if (found !== -1 ) {
-            let check = pairs.find((elt) => found === elt[0])
-            if (check === undefined) {
-                pairs.push([i, found])
-                console.log(i, found)
-            }
+  let resultArray = [];
+
+  arr.forEach((e, i, array) => {
+    array.forEach((ePair, iPair) => {
+      if(e + ePair === arg && i !== iPair) {
+        if(!(resultArray.includes(i) || resultArray.includes(iPair))) {
+          resultArray.push(i);
+          resultArray.push(iPair);
         }
+
+      }
     })
-    return arg;
+  })
+  arg = resultArray.reduce((acc, curr) => acc + curr,0,)
+  console.log(resultArray);
+  return arg;
 }
 
 pairwise([1,4,2,3,0,5], 7);
